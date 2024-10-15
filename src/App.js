@@ -10,28 +10,55 @@ function App() {
   const [stakedBalance, setStakedBalance] = useState("");
   const [account, setAccount] = useState("");
 
+  // Function to connect the wallet
+  const connectWallet = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setAccount(accounts[0]);
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+    }
+  };
+
+  // Function to fetch the staked balance
+  const fetchStakedBalance = async (staking, account) => {
+    try {
+      const balance = await staking.stakedAmount(account);
+      setStakedBalance(ethers.utils.formatEther(balance));
+    } catch (error) {
+      console.error("Error fetching staked balance:", error);
+    }
+  };
+
   useEffect(() => {
-    const initContracts = async () => {
-      try {
-        const provider = getProvider();
-        const signer = getSigner();
-        const staking = getStakingContract(signer);
-        const token = getTokenContract(signer);
-        setStakingContract(staking);
-        setTokenContract(token);
+    if (account) {
+      const initContracts = async () => {
+        try {
+          const signer = getSigner();
+          const staking = getStakingContract(signer);
+          const token = getTokenContract(signer);
+          setStakingContract(staking);
+          setTokenContract(token);
 
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setAccount(accounts[0]);
+          // Fetch the initial staked balance
+          fetchStakedBalance(staking, account);
 
-        // Fetch user's staked balance
-        const balance = await staking.stakedAmount(accounts[0]);
-        setStakedBalance(ethers.utils.formatEther(balance));
-      } catch (error) {
-        console.error("Error initializing contracts:", error);
-      }
-    };
-    initContracts();
-  }, []);
+          // Set an interval to refresh the balance every 10 seconds
+          const interval = setInterval(() => {
+            fetchStakedBalance(staking, account);
+          }, 10000); // Refresh every 10 seconds
+
+          // Clear interval when component unmounts
+          return () => clearInterval(interval);
+        } catch (error) {
+          console.error("Error initializing contracts:", error);
+        }
+      };
+      initContracts();
+    }
+  }, [account]);
 
   const handleDeposit = async () => {
     try {
@@ -62,25 +89,58 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Liquid Staking DApp</h1>
-      <p>Connected Account: {account}</p>
-      <p>Your Staked Balance: {stakedBalance} ETH</p>
-      <input
-        type="text"
-        value={ethAmount}
-        onChange={(e) => setEthAmount(e.target.value)}
-        placeholder="Amount in ETH"
-        style={{ marginRight: "10px" }}
-      />
-      <button onClick={handleDeposit} style={{ marginRight: "10px" }}>
-        Deposit ETH
-      </button>
-      <button onClick={handleRedeem}>
-        Redeem ETH
-      </button>
+    <div style={{ backgroundColor: "#f3f7fa", height: "100vh", padding: "20px" }}>
+      <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1>Liquid Staking for DeFi</h1> {/* Updated title */}
+        {!account ? (
+          <button onClick={connectWallet} style={styles.connectButton}>
+            Connect Wallet
+          </button>
+        ) : (
+          <p>Connected Account: {account}</p>
+        )}
+      </header>
+      {account && (
+        <div>
+          <p>Your Staked Balance: {stakedBalance} ETH</p>
+          <input
+            type="text"
+            value={ethAmount}
+            onChange={(e) => setEthAmount(e.target.value)}
+            placeholder="Amount in ETH"
+            style={{ marginRight: "10px" }}
+          />
+          <button onClick={handleDeposit} style={styles.button}>
+            Deposit ETH
+          </button>
+          <button onClick={handleRedeem} style={styles.button}>
+            Redeem ETH
+          </button>
+        </div>
+      )}
     </div>
   );
 }
+
+const styles = {
+  connectButton: {
+    backgroundColor: "#f89c1c",
+    border: "none",
+    color: "#fff",
+    padding: "10px 20px",
+    fontSize: "16px",
+    cursor: "pointer",
+    borderRadius: "5px",
+  },
+  button: {
+    margin: "10px",
+    padding: "10px",
+    backgroundColor: "#007bff",
+    border: "none",
+    color: "#fff",
+    cursor: "pointer",
+    borderRadius: "5px",
+  },
+};
 
 export default App;
