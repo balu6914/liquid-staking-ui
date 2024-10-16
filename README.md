@@ -1,19 +1,18 @@
-```md
-**Liquid Staking DApp**
+# Liquid Staking DApp
 
-**Overview**
+## Overview
 
 This project implements a **Liquid Staking DApp** on the Ethereum testnet (Polygon Amoy). Users can deposit ETH, which is staked on the network, and they receive liquid staking tokens (ERC-20) representing their share of the staked ETH. Users can redeem their staked ETH by burning the liquid staking tokens.
 
 The DApp provides a simple front-end interface for interacting with the staking contract. It allows users to easily stake, view their balance, and redeem their ETH.
 
-**Features**
+## Features
 
 - **Deposit ETH**: Stake ETH and receive liquid staking tokens.
 - **Staking Rewards**: Rewards are calculated and distributed periodically to staking token holders.
 - **Redeem ETH**: Redeem staked ETH by burning the liquid staking tokens.
 
-**Tech Stack**
+## Tech Stack
 
 - **Solidity**: Smart contract development.
 - **Ethers.js**: Blockchain interaction with Ethereum.
@@ -21,15 +20,15 @@ The DApp provides a simple front-end interface for interacting with the staking 
 - **Hardhat**: Ethereum development and testing environment.
 - **Vercel**: For hosting the front-end of the DApp.
 
-**Contract Addresses**
+## Contract Addresses
 
-- **Staking Contract**:'0xEFaFa16cA14408022380Bc1Fc285d982a6674452'
-- **Liquid Staking Token Contract**:'0x153349067C48c9E2a1935E8E1013572d1b708CFd'
+- **Staking Contract**: `0xYourStakingContractAddress`
+- **Liquid Staking Token Contract**: `0xYourTokenContractAddress`
 - **Deployed Frontend**: [https://liquid-staking-ui-vert.vercel.app/](https://liquid-staking-ui-vert.vercel.app/)
 
-**Getting Started**
+## Getting Started
 
-**Prerequisites**
+### Prerequisites
 
 Make sure you have the following installed:
 
@@ -38,14 +37,14 @@ Make sure you have the following installed:
 - **Hardhat** (Ethereum development framework)
 - **Metamask** (Browser wallet)
 
-**Installation**
+### Installation
 
 1. Clone the repository:
 
    ```bash
    git clone https://github.com/yourusername/liquid-staking-dapp.git
    cd liquid-staking-dapp
-   ```
+
 
 2. Install the dependencies:
 
