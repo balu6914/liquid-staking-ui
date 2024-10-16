@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+Liquid Staking DApp
+Overview
+This project implements a Liquid Staking DApp on the Ethereum testnet (Polygon Amoy). Users can deposit ETH, which is staked on the network, and they receive liquid staking tokens (ERC-20) representing their share of the staked ETH. Users can redeem their staked ETH by burning the liquid staking tokens.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The DApp provides a simple front-end interface for interacting with the staking contract. It allows users to easily stake, view their balance, and redeem their ETH.
 
-## Available Scripts
+Features
+Deposit ETH: Stake ETH and receive liquid staking tokens.
+Staking Rewards: Rewards are calculated and distributed periodically to staking token holders.
+Redeem ETH: Redeem staked ETH by burning the liquid staking tokens.
+Tech Stack
+Solidity: Smart contract development.
+Ethers.js: Blockchain interaction with Ethereum.
+React.js: Front-end framework for building the user interface.
+Hardhat: Ethereum development and testing environment.
+Vercel: For hosting the front-end of the DApp.
+Contract Addresses
+Staking Contract: 0xYourStakingContractAddress
+Liquid Staking Token Contract: 0xYourTokenContractAddress
+Deployed Frontend: https://liquid-staking-ui-vert.vercel.app/
+Getting Started
+Prerequisites
+Make sure you have the following installed:
 
-In the project directory, you can run:
+Node.js (v14.x or later)
+npm (Node package manager)
+Hardhat (Ethereum development framework)
+Metamask (Browser wallet)
+Installation
+Clone the repository:
 
-### `npm start`
+bash
+Copy code
+git clone https://github.com/yourusername/liquid-staking-dapp.git
+cd liquid-staking-dapp
+Install the dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+bash
+Copy code
+npm install
+Create a .env file in the root directory and add the following environment variables:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+env
+Copy code
+REACT_APP_STAKING_CONTRACT_ADDRESS=0xYourStakingContractAddress
+REACT_APP_TOKEN_CONTRACT_ADDRESS=0xYourTokenContractAddress
+REACT_APP_POLYGON_AMOY_RPC_URL=https://rpc-amoy.polygon.technology/
+Replace the contract addresses with your deployed contract addresses.
 
-### `npm test`
+Running Locally
+To start the front-end development server:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+bash
+Copy code
+npm start
+This will run the app on http://localhost:3000.
 
-### `npm run build`
+To interact with the smart contracts, make sure your browser is connected to the Polygon Amoy testnet via Metamask.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Deploying Contracts
+To deploy the staking and token contracts on the testnet, run:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+bash
+Copy code
+npx hardhat run scripts/deploy.js --network polygon_amoy
+After deployment, update the .env file with the new contract addresses.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Testing Smart Contracts
+Unit tests for the smart contracts are written using Hardhat. You can run the tests by executing:
 
-### `npm run eject`
+bash
+Copy code
+npx hardhat test
+This will run all the tests and validate the staking, redeeming, and rewards distribution functionalities.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Project Structure
+bash
+Copy code
+liquid-staking-dapp/
+├── contracts/            # Smart contracts
+│   ├── LiquidStakingToken.sol
+│   └── Staking.sol
+├── scripts/              # Deployment scripts
+│   └── deploy.js
+├── src/                  # Front-end source code (React)
+│   ├── App.js
+│   ├── utils/
+│   │   ├── contracts.js  # Contract interaction logic
+│   │   ├── ethers.js     # Provider and signer logic
+├── test/                 # Test scripts for smart contracts
+│   └── Staking.test.js
+├── .env                  # Environment variables
+├── hardhat.config.js      # Hardhat configuration file
+├── package.json          # Project dependencies
+└── README.md             # Project documentation
+Usage
+Interacting with the DApp
+Deposit ETH: Enter the amount of ETH you wish to deposit and click the "Deposit ETH" button.
+Redeem ETH: Enter the amount of liquid staking tokens to redeem and click the "Redeem ETH" button.
+View Staked Balance: Your staked balance is displayed in real-time after connecting your wallet.
+Front-End Deployment (Vercel)
+The front-end of the DApp is deployed on Vercel at the following URL:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+https://liquid-staking-ui-vert.vercel.app/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To deploy the front-end yourself:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Push the repository to GitHub.
+Sign in to Vercel, create a new project, and link it to your GitHub repository.
+Configure the environment variables in Vercel's settings, then deploy.
+License
+This project is licensed under the MIT License.
