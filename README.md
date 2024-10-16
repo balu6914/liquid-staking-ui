@@ -1,21 +1,19 @@
-Certainly! Below is your documentation in proper **README.md** file format:
-
 ```md
-# Liquid Staking DApp
+**Liquid Staking DApp**
 
-## Overview
+**Overview**
 
 This project implements a **Liquid Staking DApp** on the Ethereum testnet (Polygon Amoy). Users can deposit ETH, which is staked on the network, and they receive liquid staking tokens (ERC-20) representing their share of the staked ETH. Users can redeem their staked ETH by burning the liquid staking tokens.
 
 The DApp provides a simple front-end interface for interacting with the staking contract. It allows users to easily stake, view their balance, and redeem their ETH.
 
-## Features
+**Features**
 
 - **Deposit ETH**: Stake ETH and receive liquid staking tokens.
 - **Staking Rewards**: Rewards are calculated and distributed periodically to staking token holders.
 - **Redeem ETH**: Redeem staked ETH by burning the liquid staking tokens.
 
-## Tech Stack
+**Tech Stack**
 
 - **Solidity**: Smart contract development.
 - **Ethers.js**: Blockchain interaction with Ethereum.
@@ -23,15 +21,15 @@ The DApp provides a simple front-end interface for interacting with the staking 
 - **Hardhat**: Ethereum development and testing environment.
 - **Vercel**: For hosting the front-end of the DApp.
 
-## Contract Addresses
+**Contract Addresses**
 
-- **Staking Contract**: `0xYourStakingContractAddress`
-- **Liquid Staking Token Contract**: `0xYourTokenContractAddress`
+- **Staking Contract**:'0xEFaFa16cA14408022380Bc1Fc285d982a6674452'
+- **Liquid Staking Token Contract**:'0x153349067C48c9E2a1935E8E1013572d1b708CFd'
 - **Deployed Frontend**: [https://liquid-staking-ui-vert.vercel.app/](https://liquid-staking-ui-vert.vercel.app/)
 
-## Getting Started
+**Getting Started**
 
-### Prerequisites
+**Prerequisites**
 
 Make sure you have the following installed:
 
@@ -40,7 +38,7 @@ Make sure you have the following installed:
 - **Hardhat** (Ethereum development framework)
 - **Metamask** (Browser wallet)
 
-### Installation
+**Installation**
 
 1. Clone the repository:
 
@@ -65,7 +63,7 @@ Make sure you have the following installed:
 
    Replace the contract addresses with your deployed contract addresses.
 
-### Running Locally
+**Running Locally**
 
 1. To start the front-end development server:
 
@@ -77,7 +75,7 @@ Make sure you have the following installed:
 
 2. To interact with the smart contracts, make sure your browser is connected to the Polygon Amoy testnet via Metamask.
 
-### Deploying Contracts
+**Deploying Contracts**
 
 1. To deploy the staking and token contracts on the testnet, run:
 
@@ -87,7 +85,7 @@ Make sure you have the following installed:
 
    After deployment, update the `.env` file with the new contract addresses.
 
-### Testing Smart Contracts
+**Testing Smart Contracts**
 
 Unit tests for the smart contracts are written using Hardhat. You can run the tests by executing:
 
@@ -97,8 +95,8 @@ npx hardhat test
 
 This will run all the tests and validate the staking, redeeming, and rewards distribution functionalities.
 
-## Project Structure
-
+**Project Structure
+**
 ```bash
 liquid-staking-dapp/
 ├── contracts/            # Smart contracts
@@ -119,15 +117,15 @@ liquid-staking-dapp/
 └── README.md             # Project documentation
 ```
 
-## Usage
+**Usage**
 
-### Interacting with the DApp
+**Interacting with the DApp**
 
 - **Deposit ETH**: Enter the amount of ETH you wish to deposit and click the "Deposit ETH" button.
 - **Redeem ETH**: Enter the amount of liquid staking tokens to redeem and click the "Redeem ETH" button.
 - **View Staked Balance**: Your staked balance is displayed in real-time after connecting your wallet.
 
-### Front-End Deployment (Vercel)
+**Front-End Deployment (Vercel)**
 
 The front-end of the DApp is deployed on Vercel at the following URL:
 
@@ -139,16 +137,8 @@ To deploy the front-end yourself:
 2. Sign in to **Vercel**, create a new project, and link it to your GitHub repository.
 3. Configure the environment variables in Vercel's settings, then deploy.
 
-## License
+**License**
 
 This project is licensed under the MIT License.
-
-```
-
----
-
-### Key Notes:
-- Make sure to replace `0xYourStakingContractAddress` and `0xYourTokenContractAddress` with your actual contract addresses.
-- Add the proper GitHub link for your project in the clone instructions.
 
 Let me know if you'd like to adjust any section!
